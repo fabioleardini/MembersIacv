@@ -1,0 +1,191 @@
+﻿@model IEnumerable<MembersIacv.Models.MemberViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EcclesiasticalFunction.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MartialStatus.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NaturalOf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spouse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarriageDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Father)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mother)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profession)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Education)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workplace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BaptismDate)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EcclesiasticalFunction.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MartialStatus.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NaturalOf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spouse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarriageDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Father)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mother)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomePhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profession)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Education)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workplace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaptismDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
