@@ -30,12 +30,14 @@ namespace MembersIacv.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<MembersIacv.Models.MemberViewModel> MemberViewModels { get; set; }
+        public DbSet<MemberViewModel> MemberViewModel{ get; set; }
 
-        public System.Data.Entity.DbSet<MembersIacv.Models.EcclesiasticalFunction> EcclesiasticalFunctions { get; set; }
+        public DbSet<EcclesiasticalFunction> EcclesiasticalFunction { get; set; }
 
-        public System.Data.Entity.DbSet<MembersIacv.Models.MartialStatus> MartialStatus { get; set; }
+        public DbSet<MartialStatus> MartialStatus { get; set; }
 
-        public System.Data.Entity.DbSet<MembersIacv.Models.State> States { get; set; }
+        public DbSet<State> State { get; set; }
+
+        public DbSet<BloodType> BloodType { get; set; }
     }
 }

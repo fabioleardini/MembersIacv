@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using MembersIacv.Models;
+using System.Collections.Generic;
 
 namespace MembersIacv.Controllers
 {
@@ -13,8 +14,26 @@ namespace MembersIacv.Controllers
         // GET: Member
         public ActionResult Index()
         {
-            var memberViewModels = db.MemberViewModels.Include(m => m.EcclesiasticalFunction).Include(m => m.MartialStatus).Include(m => m.State);
-            return View(memberViewModels.ToList());
+            var MemberViewModel = db.MemberViewModel.Include(m => m.EcclesiasticalFunction).Include(m => m.MartialStatus).Include(m => m.State);
+            return View(MemberViewModel.ToList());
+        }
+
+        public ActionResult Register()
+        {
+            var bloodType = db.BloodType.ToList();
+            var ecclesiasticalFunction = db.EcclesiasticalFunction.ToList();
+            var martialStatus = db.MartialStatus.ToList();
+            var state = db.State.ToList();
+
+            var result = new Dictionary<string, object>()
+            {
+                { "BloodType", bloodType },
+                { "EcclesiasticalFunction", ecclesiasticalFunction },
+                { "MartialStatus", martialStatus },
+                { "State", state }
+            };
+
+            return View(result);
         }
 
         // GET: Member/Details/5
@@ -24,7 +43,7 @@ namespace MembersIacv.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MemberViewModel memberViewModel = db.MemberViewModels.Find(id);
+            MemberViewModel memberViewModel = db.MemberViewModel.Find(id);
             if (memberViewModel == null)
             {
                 return HttpNotFound();
@@ -35,9 +54,9 @@ namespace MembersIacv.Controllers
         // GET: Member/Create
         public ActionResult Create()
         {
-            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunctions, "EcclesiasticalFunctionId", "Description");
+            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunction, "EcclesiasticalFunctionId", "Description");
             ViewBag.MartialStatusId = new SelectList(db.MartialStatus, "MartialStatusId", "Description");
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description");
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description");
             return View();
         }
 
@@ -50,14 +69,14 @@ namespace MembersIacv.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.MemberViewModels.Add(memberViewModel);
+                db.MemberViewModel.Add(memberViewModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunctions, "EcclesiasticalFunctionId", "Description", memberViewModel.EcclesiasticalFunctionId);
+            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunction, "EcclesiasticalFunctionId", "Description", memberViewModel.EcclesiasticalFunctionId);
             ViewBag.MartialStatusId = new SelectList(db.MartialStatus, "MartialStatusId", "Description", memberViewModel.MartialStatusId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", memberViewModel.StateId);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description", memberViewModel.StateId);
             return View(memberViewModel);
         }
 
@@ -68,14 +87,14 @@ namespace MembersIacv.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MemberViewModel memberViewModel = db.MemberViewModels.Find(id);
+            MemberViewModel memberViewModel = db.MemberViewModel.Find(id);
             if (memberViewModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunctions, "EcclesiasticalFunctionId", "Description", memberViewModel.EcclesiasticalFunctionId);
+            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunction, "EcclesiasticalFunctionId", "Description", memberViewModel.EcclesiasticalFunctionId);
             ViewBag.MartialStatusId = new SelectList(db.MartialStatus, "MartialStatusId", "Description", memberViewModel.MartialStatusId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", memberViewModel.StateId);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description", memberViewModel.StateId);
             return View(memberViewModel);
         }
 
@@ -92,9 +111,9 @@ namespace MembersIacv.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunctions, "EcclesiasticalFunctionId", "Description", memberViewModel.EcclesiasticalFunctionId);
+            ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunction, "EcclesiasticalFunctionId", "Description", memberViewModel.EcclesiasticalFunctionId);
             ViewBag.MartialStatusId = new SelectList(db.MartialStatus, "MartialStatusId", "Description", memberViewModel.MartialStatusId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", memberViewModel.StateId);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Description", memberViewModel.StateId);
             return View(memberViewModel);
         }
 
@@ -105,7 +124,7 @@ namespace MembersIacv.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MemberViewModel memberViewModel = db.MemberViewModels.Find(id);
+            MemberViewModel memberViewModel = db.MemberViewModel.Find(id);
             if (memberViewModel == null)
             {
                 return HttpNotFound();
@@ -118,8 +137,8 @@ namespace MembersIacv.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MemberViewModel memberViewModel = db.MemberViewModels.Find(id);
-            db.MemberViewModels.Remove(memberViewModel);
+            MemberViewModel memberViewModel = db.MemberViewModel.Find(id);
+            db.MemberViewModel.Remove(memberViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
