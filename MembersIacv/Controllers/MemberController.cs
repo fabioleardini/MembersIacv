@@ -18,19 +18,28 @@ namespace MembersIacv.Controllers
             return View(MemberViewModel.ToList());
         }
 
-        public ActionResult Register()
+        public ActionResult Register(int? id)
         {
             var bloodType = db.BloodType.ToList();
             var ecclesiasticalFunction = db.EcclesiasticalFunction.ToList();
             var martialStatus = db.MartialStatus.ToList();
             var state = db.State.ToList();
+            var member = id > 0 ? db.MemberViewModel.FirstOrDefault(m => m.Id == id) : new MemberViewModel();
 
             var result = new Dictionary<string, object>()
             {
                 { "BloodType", bloodType },
                 { "EcclesiasticalFunction", ecclesiasticalFunction },
                 { "MartialStatus", martialStatus },
-                { "State", state }
+                { "State", state },
+                { "Sex",
+                    new List<SelectListItem>()
+                    {
+                        new SelectListItem() { Text = "Masculino", Value = "M" },
+                        new SelectListItem() { Text = "Feminino", Value = "F" }
+                    }
+                },
+                { "Member", member }
             };
 
             return View(result);
@@ -55,8 +64,14 @@ namespace MembersIacv.Controllers
         public ActionResult Create()
         {
             ViewBag.EcclesiasticalFunctionId = new SelectList(db.EcclesiasticalFunction, "EcclesiasticalFunctionId", "Description");
+            ViewBag.BloodTypeId = new SelectList(db.BloodType, "BloodTypeId", "Description");
             ViewBag.MartialStatusId = new SelectList(db.MartialStatus, "MartialStatusId", "Description");
             ViewBag.StateId = new SelectList(db.State, "StateId", "Description");
+            ViewBag.Sex = new List<SelectListItem>()
+                            {
+                                new SelectListItem() { Text = "Masculino", Value = "M" },
+                                new SelectListItem() { Text = "Feminino", Value = "F" }
+                            };
             return View();
         }
 
