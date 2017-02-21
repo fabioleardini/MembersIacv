@@ -38,6 +38,6 @@ namespace MembersIacv.Models
 
         public DbSet<State> State { get; set; }
 
-        public DbSet<BloodType> BloodType { get; set; }
-    }
+        public DbSet<BloodType> BloodType { get; set; }        
+    }    
 }

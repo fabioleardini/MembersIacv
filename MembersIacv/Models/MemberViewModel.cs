@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MembersIacv.Models
 {
+    [Table("Member")]
     public class MemberViewModel
     {
         [Key]
@@ -11,22 +13,22 @@ namespace MembersIacv.Models
         [MaxLength(80), Display(Name="Nome")]
         public string Name { get; set; }
 
-        [Display(Name= "Sexo")]
-        public char Sex { get; set; }
+        [MaxLength(1), Display(Name = "Sexo")]
+        public string Sex { get; set; }
 
-        [Display(Name= "Data de Nascimento")]
+        [Display(Name = "Data de Nascimento")]
         public DateTime BirthDay { get; set; }
 
         [MaxLength(40), Display(Name = "Natural de")]
         public string NaturalOf { get; set; }
 
-        [Display(Name= "Estado Civil")]
+        [Display(Name = "Estado Civil")]
         public short MartialStatusId { get; set; }
 
         [MaxLength(80), Display(Name = "Cônjuge")]
         public string Spouse { get; set; }
 
-        [Display(Name= "Data de Matrimônio")]
+        [Display(Name = "Data de Matrimônio")]
         public DateTime MarriageDate { get; set; }
 
         [MaxLength(80), Display(Name = "Nome do Pai")]
@@ -53,10 +55,10 @@ namespace MembersIacv.Models
         [MaxLength(40), Display(Name = "Cidade")]
         public string Ciy { get; set; }
 
-        [Display(Name= "Estado")]
+        [Display(Name = "Estado")]
         public short StateId { get; set; }
 
-        [Display(Name= "CEP")]
+        [Display(Name = "CEP")]
         public int Zip { get; set; }
 
         [MaxLength(30), Display(Name = "Profissão")]

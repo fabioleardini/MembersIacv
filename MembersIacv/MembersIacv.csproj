@@ -175,10 +175,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702020122117_InitialCreate.cs" />
-    <Compile Include="Migrations\201702020122117_InitialCreate.Designer.cs">
-      <DependentUpon>201702020122117_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BloodType.cs" />
@@ -260,7 +256,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Member\Register.cshtml" />
     <Content Include="Views\Member\Create.cshtml" />
     <Content Include="Views\Member\Delete.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
@@ -275,11 +270,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702020122117_InitialCreate.resx">
-      <DependentUpon>201702020122117_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -14,35 +14,14 @@ namespace MembersIacv.Controllers
         // GET: Member
         public ActionResult Index()
         {
-            var MemberViewModel = db.MemberViewModel.Include(m => m.EcclesiasticalFunction).Include(m => m.MartialStatus).Include(m => m.State);
+            var MemberViewModel =
+                db.MemberViewModel.Include(m => m.EcclesiasticalFunction)
+                    .Include(m => m.MartialStatus)
+                    .Include(m => m.State)
+                    .Include(m => m.BloodType)
+                    .Include(m => m.Sex);
+
             return View(MemberViewModel.ToList());
-        }
-
-        public ActionResult Register(int? id)
-        {
-            var bloodType = db.BloodType.ToList();
-            var ecclesiasticalFunction = db.EcclesiasticalFunction.ToList();
-            var martialStatus = db.MartialStatus.ToList();
-            var state = db.State.ToList();
-            var member = id > 0 ? db.MemberViewModel.FirstOrDefault(m => m.Id == id) : new MemberViewModel();
-
-            var result = new Dictionary<string, object>()
-            {
-                { "BloodType", bloodType },
-                { "EcclesiasticalFunction", ecclesiasticalFunction },
-                { "MartialStatus", martialStatus },
-                { "State", state },
-                { "Sex",
-                    new List<SelectListItem>()
-                    {
-                        new SelectListItem() { Text = "Masculino", Value = "M" },
-                        new SelectListItem() { Text = "Feminino", Value = "F" }
-                    }
-                },
-                { "Member", member }
-            };
-
-            return View(result);
         }
 
         // GET: Member/Details/5
@@ -80,7 +59,7 @@ namespace MembersIacv.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,BirthDay,NaturalOf,MartialStatusId,Spouse,MarriageDate,Father,Mother,HomePhone,Mobile,Email,Address,District,Ciy,StateId,Zip,Profession,Education,Workplace,WorkPhone,Cpf,Rg,Nationality,BloodType,BaptismDate,EcclesiasticalFunctionId")] MemberViewModel memberViewModel)
+        public ActionResult Create([Bind(Include = "Id,Name,Sex,BirthDay,NaturalOf,MartialStatusId,Spouse,MarriageDate,Father,Mother,HomePhone,Mobile,Email,Address,District,Ciy,StateId,Zip,Profession,Education,Workplace,WorkPhone,Cpf,Rg,Nationality,BloodTypeId,BaptismDate,EcclesiasticalFunctionId")] MemberViewModel memberViewModel)
         {
             if (ModelState.IsValid)
             {

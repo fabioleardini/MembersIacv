@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MembersIacv.Models
 {
+    [Table("BloodType")]
     public class BloodType
     {
         [Key]
